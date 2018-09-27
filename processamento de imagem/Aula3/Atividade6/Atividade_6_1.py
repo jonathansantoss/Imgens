@@ -13,16 +13,11 @@ w = imgLennaCinza.size[1]
 for linha in range(h):
     for coluna in range(w):
         pixel = imgLennaCinza.getpixel((linha, coluna))
-        Y = int(linha * math.sin(45) + coluna * math.cos(45))
-        X = int((linha * math.cos(45) - coluna * math.sin(45))) # O valor vai está negativo
-        
-        X1 = 0
-        if X == 0:
-            X1 = 999
-        else:
-            X1 = 999 + X
-        
-        img.putpixel((int(X1 / 2) + 50, int(Y / 2) + 320), pixel)
+        Y = int(coluna * math.sin(45) + linha * math.cos(45))
+        X = int((coluna * math.cos(45) - linha * math.sin(45)))
+        if X < 0:
+            X = X *(-1)
+        img.putpixel((int(X/2) + 100, int(Y/2) + 100), pixel)
         
 img.show()
 img.save('img1.png')
