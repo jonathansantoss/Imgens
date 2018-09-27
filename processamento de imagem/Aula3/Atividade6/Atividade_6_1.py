@@ -5,12 +5,10 @@ imglenna = Image.open('Lenna.png')
 imgLennaCinza = imglenna.convert('L')
 imgLennaCinza.show()
 
+h,w = imgLennaCinza.size
 
 img = Image.new('L', (1000, 1000) , 'BLACK')
-img2 = Image.new('L', (imgLennaCinza.size[0], imgLennaCinza.size[1]) , 'BLACK')
-
-h = imgLennaCinza.size[0]
-w = imgLennaCinza.size[1]   
+img2 = Image.new('L', (w,h) , 'BLACK')  
 
 for linha in range(h):
     for coluna in range(w):
