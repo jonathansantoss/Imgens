@@ -7,22 +7,29 @@ imgLennaCinza.show()
 
 h, w = imgLennaCinza.size
 
-img = Image.new('L', (1000, 1000) , 'BLACK')
-img2 = Image.new('L', (int((w) * 1.5), int((h) * 1.5)) , 'BLACK')  
+img = Image.new('L', (750, 750) , 'BLACK')
+img2 = Image.new('L', (w, h) , 'BLACK')  
 
 for linha in range(h):
     for coluna in range(w):
-        pixel = imgLennaCinza.getpixel((coluna, linha))
-        img2.putpixel((int(coluna / 2) + 128   , int(linha / 2) + 128), pixel)
+        pixel = imgLennaCinza.getpixel((linha, coluna))
+        img2.putpixel((int(linha / 2) + 128   , int(coluna / 2) + 128), pixel)
         
 img2.show()
         
-for linha in range(h):
-    for coluna in range(w):
-        pixel = img2.getpixel((coluna, linha))
-        Y = int(coluna * math.sin(90) + linha * math.cos(90))
-        X = int((coluna * math.cos(90) - linha * math.sin(90)))
+for linha in range(128, h):
+    for coluna in range(128, w):
+        pixel = img2.getpixel((linha, coluna))
+
+        cos = math.cos(math.pi / 2)
+        sin = math.sin(math.pi / 2)
         
-        img.putpixel((int(X / 2 + 342) , int(Y / 2 + 680)), pixel)
+        Y = int(linha * sin + coluna * cos)
+        X = int((linha * cos - coluna * sin))
+        
+        if X < 0:
+            X = X + img.size[0]
+            img.putpixel((int(X / 2) + 100, int(Y / 2) + 100), pixel)
+            
 img.show()
 img.save('img2.png')
