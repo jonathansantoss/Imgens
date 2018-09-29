@@ -5,23 +5,24 @@ imglenna = Image.open('Lenna.png')
 imgLennaCinza = imglenna.convert('L')
 imgLennaCinza.show()
 
-img = Image.new('L', (3000, 3000) , 'BLACK')
+h, w = imgLennaCinza.size
 
-h = imgLennaCinza.size[0]
-w = imgLennaCinza.size[1]   
+img = Image.new('L', (1000, 1000) , 'BLACK')
+img2 = Image.new('L', (int((w) * 1.5), int((h) * 1.5)) , 'BLACK')  
 
 for linha in range(h):
     for coluna in range(w):
-        pixel = imgLennaCinza.getpixel((linha, coluna))
-        Y = int( (coluna * math.sin(90) + linha* math.cos(90)))
-        X = int((coluna * math.cos(90) -  linha* math.sin(90))) # O valor vai est� negativo
+        pixel = imgLennaCinza.getpixel((coluna, linha))
+        img2.putpixel((int(coluna / 2) + 128   , int(linha / 2) + 128), pixel)
         
-        X1 = 0
-        if X == 0:
-            X1 = 999
-        else:
-            X1 = 999 + X
-        img.putpixel((int(X1 / 2) + 50, int(Y / 2) + 320), pixel)
+img2.show()
         
+for linha in range(h):
+    for coluna in range(w):
+        pixel = img2.getpixel((coluna, linha))
+        Y = int(coluna * math.sin(90) + linha * math.cos(90))
+        X = int((coluna * math.cos(90) - linha * math.sin(90)))
+        
+        img.putpixel((int(X / 2 + 342) , int(Y / 2 + 680)), pixel)
 img.show()
 img.save('img2.png')
