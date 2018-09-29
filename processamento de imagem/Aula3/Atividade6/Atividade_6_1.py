@@ -20,15 +20,19 @@ img2.show()
 for linha in range(h):
     for coluna in range(w):
         pixel = img2.getpixel((coluna, linha))
-        Y = int(coluna * math.sin(45) + linha * math.cos(0.5))
-        X = int((coluna * math.cos(0.5) - linha * math.sin(45)))
+        
+        cos = math.cos(math.pi / 4)
+        sin = math.sin(math.pi / 4)
+        
+        Y = int(coluna * sin + linha * cos)
+        X = int(coluna * cos - linha * sin)
         
         if X < 0:
-            X = 500 + X
+            X = h + X
             img.putpixel((int(X / 2 + 250) , int(Y / 2 + 250)), pixel)
             
         else:
-            X = 500 + X
+            X = h + X
             img.putpixel((int(X / 2 + 250) , int(Y / 2 + 250)), pixel)
         
 img.show()

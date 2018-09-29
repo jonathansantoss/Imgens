@@ -7,18 +7,18 @@ imgLennaCinza.show()
 
 h, w = imgLennaCinza.size
 
-img = Image.new('L', (750, 750) , 'BLACK')
-img2 = Image.new('L', (w, h) , 'BLACK')  
+img = Image.new('L', (1000, 1000) , 'BLACK')
+img2 = Image.new('L', (750, 750) , 'BLACK')  
 
 for linha in range(h):
     for coluna in range(w):
         pixel = imgLennaCinza.getpixel((linha, coluna))
-        img2.putpixel((int(linha / 2) + 128   , int(coluna / 2) + 128), pixel)
+        img2.putpixel((int(linha) + 25   , int(coluna) + 25), pixel)
         
 img2.show()
         
-for linha in range(128, h):
-    for coluna in range(128, w):
+for linha in range(h):
+    for coluna in range(w):
         pixel = img2.getpixel((linha, coluna))
 
         cos = math.cos(math.pi / 2)
