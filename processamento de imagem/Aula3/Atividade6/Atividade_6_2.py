@@ -29,7 +29,7 @@ for linha in range(h):
         
         if X < 0:
             X = X + img.size[0]
-            img.putpixel((int(X / 2) + 100, int(Y / 2) + 100), pixel)
+            img.putpixel((int(X / 1.2) + 100, int(Y / 1.2) + 100), pixel)
             
 img.show()
 img.save('img2.png')
