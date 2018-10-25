@@ -15,6 +15,7 @@ public class Inimigo {
 								// ou se chocar com a nave
 
 	private static final int LARGURA_TELA = 1200; // Até onde o inimigo pode
+	@SuppressWarnings("unused")
 	private static final int ALTURA_TELA = 500;												// correr na tela
 	private static final int VELOCIDADE = 2; // Velocidade de movimento do
 												// inimigo

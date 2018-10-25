@@ -1,7 +1,5 @@
 package Jogo;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,19 +36,20 @@ public class Fase extends JPanel implements ActionListener {
 	private List<Inimigo> inimigos;
 
 	private Inimigo chefao;
-	
+
 	private int[][] coordenadas;
 
 	private int qntInimigos = 10;
 
 	private int qntInimigosAbatidos = 0;
-	
+
 	private Boolean exibeInimigos = true;
-	
+
 	private Sounds sound;
+
 	public Fase() {
 		sound = new Sounds();
-		
+
 		setDoubleBuffered(true);
 		// Não deixar falhas na tela após a movimentação
 		setFocusable(true);
@@ -115,7 +113,7 @@ public class Fase extends JPanel implements ActionListener {
 		graficos.drawImage(fundo, 0, 0, null);
 		// Apresentar o fundo no jogo; o 00 para deixar a imagem
 		// prenchida na tela toda e null parada nessa posição
-		
+
 		if (jogo) {
 			graficos.drawImage(nave.getImagem(), nave.getX(), nave.getY(), this);
 			// Apresentar a nave e suas posições no fundo do jogo
@@ -136,15 +134,17 @@ public class Fase extends JPanel implements ActionListener {
 				Inimigo in = inimigos.get(i);
 				graficos.drawImage(in.getImagem(), in.getX(), in.getY(), this);
 			}
-			
-			if(!exibeInimigos) {
+
+			if (!exibeInimigos) {
 				graficos.drawImage(chefao.getImagem(), chefao.getX(), chefao.getY(), this);
 				chefao.movimentoBoss();
 			}
-			
+
 			graficos.setColor(Color.RED);
 			graficos.drawString("Inimigos Restantes: " + inimigos.size(), 5, 15);
 			graficos.drawString("Inimigos abatidos: " + qntInimigosAbatidos, 5, 30);
+			graficos.fillRect(10, 10, 10, 10);
+			// graficos.drawRect(10, 10, 10, 10);
 
 		} else {
 			ImageIcon finaljogo = new ImageIcon("Imagens-Jogo\\final de jogo.jpg");
@@ -160,7 +160,7 @@ public class Fase extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// Movimentar a nave, missil, inimigos no plano
 		// de fundo do jogo
-		
+
 		if (inimigos.size() == 0 && exibeInimigos) {
 			// Quando acabar os inimigos
 
@@ -173,8 +173,8 @@ public class Fase extends JPanel implements ActionListener {
 			// Libera o jogo
 			jogo = true;
 
-		}else if(!exibeInimigos) {
-			
+		} else if (!exibeInimigos) {
+
 		}
 
 		List<Missil> misseis = nave.getMisseis();
@@ -258,7 +258,7 @@ public class Fase extends JPanel implements ActionListener {
 					tempMissil.setVisivel(false);
 					qntInimigosAbatidos++;
 					sound.setSound("explosao");
-					if(qntInimigosAbatidos == 50) {
+					if (qntInimigosAbatidos == 50) {
 						inimigos.clear();
 						exibeInimigos = false;
 						chefao = new Inimigo(700, 250, true);

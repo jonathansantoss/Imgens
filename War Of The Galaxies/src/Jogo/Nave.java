@@ -1,11 +1,8 @@
 package Jogo;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
